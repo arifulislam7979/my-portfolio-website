@@ -34,26 +34,26 @@ Welcome to the GitHub repository of my personal portfolio website! This platform
 
 ## 🚀 Featured Projects
 
-1. **Full-Stack E-Commerce & Web Platform**[cite: 1]
+1. ** BAZAR DOR WEBSITE
    * *Tech Stack:* TypeScript, Next.js 14, React, Tailwind CSS, Node.js, MongoDB[cite: 1]
    * *Description:* Type-safe web application with user authentication, session management, and robust MongoDB backend schemas[cite: 1].
 
-2. **Responsive Administrative Dashboard & UI System**[cite: 1]
+2. **BOOKS VIBE WEBSITE
    * *Tech Stack:* TypeScript, React.js, Tailwind CSS, DaisyUI, HeroUI[cite: 1]
    * *Description:* Modular, strongly-typed React components designed for data management dashboards and real-time client interaction[cite: 1].
 
-3. **Fit Log (Workout Tracker)**
+3. **FIT LOG - TRACKING SITE(Workout Tracker)**
    * *Description:* Dynamic workout tracking application with exercise sorting and local data persistence.
 
-4. **Books Vibe & Bangla News 24**
+4. **BANGLA NEWS 24
    * *Description:* Modern web applications featuring category filtering, server-side data fetching, and Better Auth authentication.
 
 ---
 
 ## 📞 Contact Info
-* **Email:** arifislam01760083176@gmail.com[cite: 1]
-* **Phone:** +880 1760083176[cite: 1]
-* **GitHub:** [github.com/arifulislam](https://github.com/arifulislam)[cite: 1]
+* **Email:** arifislam01760083176@gmail.com
+* **Phone:** +880 1760083176
+* **GitHub:** [github.com/arifulislam](https://github.com/arifulislam)
 
 ---
 © 2026 MD. ARIFUL ISLAM. All rights reserved.
