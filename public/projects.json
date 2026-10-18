@@ -1,0 +1,33 @@
+
+// [
+//   {
+//     "id": 1,
+//     "title": "Bangla News 24",
+//     "description": "A Bangla news website designed to present news content through a web interface.",
+//     "image": "/images/bangla-bazar-24.png",
+//     "technologies": ["next.js", "typescript", "tailwindcss", ""],
+//     "liveUrl": "https://bangla-news-website.vercel.app/",
+//     "githubUrl": "https://github.com/arifulislam7979",
+//     "category": "Web Development"
+//   },
+//   {
+//     "id": 2,
+//     "title": "FitLog Tracking",
+//     "description": "A fitness tracking web application for planning workouts and saving exercises.",
+//     "image": "/images/fitlog-tracking.png",
+//     "technologies": ["next.js", "typescript", "tailwindcss"],
+//     "liveUrl": "https://fit-log-pearl.vercel.app/",
+//     "githubUrl": "https://github.com/arifulislam7979/Fit-log-project",
+//     "category": "Web Development"
+//   },
+//   {
+//     "id": 3,
+//     "title": "Bazar Dor",
+//     "description": "A web project focused on providing a convenient online experience for exploring market prices and related information.",
+//     "image": "/images/bazar-dor.png",
+//     "technologies": ["next.js", "typescript", "tailwindcss"],
+//     "liveUrl": "https://bazar-dor-website-eight.vercel.app/",
+//     "githubUrl": "https://github.com/arifulislam7979/Bazar-dor-website",
+//     "category": "Web Development"
+//   }
+// ]
