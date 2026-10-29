@@ -14,10 +14,6 @@ export default function Hero() {
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-<<<<<<< HEAD
-=======
-        {/* Content column */}
->>>>>>> c3d93923d6f27d5d5e352920336ad1594d1d7b59
         <motion.div
           className="space-y-6"
           variants={fadeInUp}
