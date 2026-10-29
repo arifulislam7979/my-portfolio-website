@@ -9,7 +9,7 @@ export const profile = {
   github: "https://github.com/arifulislam7979",
   linkedin: "https://linkedin.com/in/arifulislam",
   avatar: "/images/my-imagee.jpeg",
-  resume: "/Curriculum Vitae (5).pdf",
+  resume: "/Curriculum Vitae (5).pdf"
 };
 
 export const skills = {
@@ -82,7 +82,13 @@ export const projects: Project[] = [
     description:
       "A responsive admin dashboard and UI system featuring data tables, analytics cards, navigation drawers, and accessible components.",
     image: "/images/book-management.png",
-    technologies: ["TypeScript", "React", "Tailwind CSS", "DaisyUI", "HeroUI"],
+    technologies: [
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "DaisyUI",
+      "HeroUI",
+    ],
     liveUrl: "https://book-magement-project--one.vercel.app/",
     githubUrl: "https://github.com/arifulislam7979/first-next-project",
   },

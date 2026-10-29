@@ -1,6 +1,10 @@
 'use client';
 
 import Image from "next/image";
+<<<<<<< HEAD
+=======
+import Link from "next/link";
+>>>>>>> c3d93923d6f27d5d5e352920336ad1594d1d7b59
 import { motion } from "framer-motion";
 import { projects } from "@/data/portfolio";
 import Reveal from "@/components/Reveal";
@@ -19,6 +23,10 @@ export default function Projects() {
 
       <div
         className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+<<<<<<< HEAD
+=======
+        // eslint-disable-next-line react/no-unstable-nested-components
+>>>>>>> c3d93923d6f27d5d5e352920336ad1594d1d7b59
       >
         {projects.map((p) => (
           <Reveal
