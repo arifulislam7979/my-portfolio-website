@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm soft neutral base — no stark white */
+  --color-bg: #EBECE4;           /* page background */
+  --color-surface: #E2E1D8;      /* navbar, cards, containers, accents */
+
+  /* Borders */
+  --color-border: #C9C7BC;       /* refined neutral border */
+  --color-border-hover: #B9B7AB;
+  --color-border-focus: #1E3A8A;
+
+  /* Typography & contrast — dark charcoal/slate */
+  --color-text-primary: #0F172A;   /* near-black slate for headings */
+  --color-text-secondary: #334155; /* slate-700 for body */
+  --color-text-muted: #64748B;     /* slate-500 for captions */
+  --color-text-inverse: #FFFFFF;
+
+  /* Accent — deep slate blue / navy */
+  --color-accent: #1E3A8A;    /* navy-800 */
+  --color-accent-hover: #1E40AF; /* navy-900 */
+  --color-accent-light: rgba(30, 58, 138, 0.10);
+  --color-accent-border: rgba(30, 58, 138, 0.35);
+
+  /* Shadows — refined drop shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.06);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.10);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.10), 0 4px 6px -4px rgb(0 0 0 / 0.10);
+  --shadow-accent: 0 0 20px rgba(30, 58, 138, 0.25);
+
+  /* Radius */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family:
+    var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+  .print-hidden {
+    display: none !important;
+  }
+}
