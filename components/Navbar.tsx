@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { navLinks, profile } from "@/data/portfolio";
 import Image from "next/image";
 
@@ -9,33 +9,33 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("#home");
-  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
 
-  // Detect active section by scroll position
-  const handleScroll = useCallback(() => {
-    for (const [key, ref] of Object.entries(sectionRefs.current)) {
-      if (ref) {
-        const rect = ref.getBoundingClientRect();
-        if (rect.top <= 80 && rect.bottom >= 80) {
-          setActiveSection(key);
-          break;
+     
+      const sections = navLinks.map((l) => l.href.substring(1)); 
+      const scrollPosition = window.scrollY + 100; 
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const top = element.offsetTop;
+          const height = element.offsetHeight;
+
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(`#${sectionId}`);
+            break;
+          }
         }
       }
-    }
-  }, []);
+    };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const isActive = (href: string) => activeSection === href;
 
@@ -78,13 +78,15 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               className="text-sm font-medium text-text-secondary hover:text-accent transition-colors relative px-3 py-1.5 rounded-lg"
-              onClick={() => setOpen(false)}
-              onMouseEnter={() => {}}
+              onClick={() => {
+                setOpen(false);
+                setActiveSection(l.href);
+              }}
             >
               <span
                 className={`block text-sm font-medium transition-colors duration-200 ${
                   isActive(l.href)
-                    ? "text-text-primary"
+                    ? "text-text-primary font-semibold"
                     : "text-text-secondary"
                 }`}
               >
@@ -128,7 +130,10 @@ export default function Navbar() {
                     ? "bg-accent text-white font-semibold"
                     : "text-text-secondary hover:bg-white/60 hover:text-text-primary"
                 }`}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  setActiveSection(l.href);
+                }}
               >
                 {l.label}
               </Link>
