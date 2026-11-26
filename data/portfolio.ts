@@ -8,7 +8,7 @@ export const profile = {
   location: "Ulipur, Kurigram, Bangladesh",
   github: "https://github.com/arifulislam7979",
   linkedin: "https://linkedin.com/in/arifulislam",
-  avatar: "/images/my-imagee.jpeg",
+  avatar: "/images/my-hero-image.jpg",
   resume: "/Curriculum Vitae (5).pdf",
 };
 export const skills = {
