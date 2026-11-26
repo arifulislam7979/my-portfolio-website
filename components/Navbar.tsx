@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { navLinks, profile } from "@/data/portfolio";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Download, Menu, X } from "lucide-react";
+import { navLinks, profile } from "@/data/portfolio";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -12,24 +13,33 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 12);
 
-     
-      const sections = navLinks.map((l) => l.href.substring(1)); 
-      const scrollPosition = window.scrollY + 100; 
+      const scrollPosition = window.scrollY + 140;
+      let current = "#home";
 
-      for (const sectionId of sections) {
+      for (const link of navLinks) {
+        const sectionId = link.href.replace(/^#/, "");
         const element = document.getElementById(sectionId);
         if (element) {
           const top = element.offsetTop;
           const height = element.offsetHeight;
 
           if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(`#${sectionId}`);
-            break;
+            current = `#${sectionId}`;
           }
         }
       }
+
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 40
+      ) {
+        const lastLink = navLinks[navLinks.length - 1];
+        if (lastLink) current = lastLink.href;
+      }
+
+      setActiveSection(current);
     };
 
     onScroll();
@@ -38,113 +48,135 @@ export default function Navbar() {
   }, []);
 
   const isActive = (href: string) => activeSection === href;
+  const resumeHref = profile.resume || "/Aruful-Islam-CV.pdf";
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "shadow-sm border-b border-border"
-          : ""
+          ? "border-b border-border/80 bg-surface/90 backdrop-blur-md shadow-sm"
+          : "bg-transparent"
       }`}
     >
       <nav
-        className={`mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 ${
-          scrolled ? "bg-surface/95 backdrop-blur-md" : "bg-transparent"
-        }`}
+        aria-label="Primary Navigation"
+        className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
       >
         {/* Brand */}
         <Link
           href="#home"
-          className="flex items-center gap-2.5"
-          onClick={() => setOpen(false)}
+          className="group flex items-center gap-2.5 rounded-lg py-1 focus:outline-none"
+          onClick={() => {
+            setOpen(false);
+            setActiveSection("#home");
+          }}
         >
-          <Image
-            src={profile.avatar}
-            alt={profile.name}
-            width={32}
-            height={32}
-            className="rounded-full border border-border bg-white p-0.5 object-cover shadow-sm"
-            loading="lazy"
-          />
-          <span className="font-bold tracking-tight text-lg text-text-primary">
+          <div className="relative h-8 w-8 overflow-hidden rounded-full border border-accent-border/70 bg-surface shadow-sm transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src={profile.avatar}
+              alt={profile.name}
+              fill
+              sizes="32px"
+              className="object-cover object-center"
+              priority
+            />
+          </div>
+          <span className="text-lg font-bold tracking-tight text-text-primary transition-colors group-hover:text-accent">
             Ariful
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-text-secondary hover:text-accent transition-colors relative px-3 py-1.5 rounded-lg"
-              onClick={() => {
-                setOpen(false);
-                setActiveSection(l.href);
-              }}
-            >
-              <span
-                className={`block text-sm font-medium transition-colors duration-200 ${
-                  isActive(l.href)
-                    ? "text-text-primary font-semibold"
-                    : "text-text-secondary"
+        {/* Desktop Links */}
+        <div className="hidden items-center gap-1.5 md:flex lg:gap-2">
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => {
+                  setOpen(false);
+                  setActiveSection(link.href);
+                }}
+                className={`relative rounded-lg px-3.5 py-2 text-sm font-medium transition-all duration-200 ${
+                  active
+                    ? "bg-accent-light/70 font-semibold text-accent"
+                    : "text-text-secondary hover:bg-surface/80 hover:text-text-primary"
                 }`}
               >
-                {l.label}
-              </span>
-              {isActive(l.href) && (
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-accent rounded-full" />
-              )}
-            </Link>
-          ))}
+                {link.label}
+              </Link>
+            );
+          })}
+
           <a
-            href={'/Aruful-Islam-CV.pdf'}
-            className="inline-flex items-center gap-2 rounded-xl border border-accent-border bg-accent px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-accent-hover hover:shadow-accent transition-all duration-300"
+            href="/Ariful-Islam-CV.pdf"
             download
+            className="ml-2 inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all duration-300 hover:bg-accent-hover hover:shadow-md"
           >
-            <span className="text-[10px]">↓</span>
-            Resume
+            <Download className="h-3.5 w-3.5" />
+            <span>Resume</span>
           </a>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile Menu Button */}
         <button
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          className="rounded-lg border border-border px-3 py-2 text-sm font-medium text-text-secondary hover:bg-white/60 md:hidden transition-colors"
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="inline-flex items-center gap-1.5 rounded-xl border border-border/80 bg-surface/90 px-3 py-2 text-xs font-semibold text-text-primary shadow-sm transition-colors hover:border-accent-border hover:bg-accent-light/50 md:hidden"
         >
-          {open ? "Close" : "Menu"}
+          {open ? (
+            <>
+              <X className="h-4 w-4 text-accent" />
+              <span>Close</span>
+            </>
+          ) : (
+            <>
+              <Menu className="h-4 w-4 text-accent" />
+              <span>Menu</span>
+            </>
+          )}
         </button>
       </nav>
 
-      {/* Mobile menu panel */}
+      {/* Mobile Menu Panel */}
       {open && (
-        <div className="border-t border-border bg-surface/95 backdrop-blur-md md:hidden">
-          <div className="px-4 py-4 space-y-1">
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={`rounded-lg px-4 py-2.5 text-sm block transition-colors duration-200 ${
-                  isActive(l.href)
-                    ? "bg-accent text-white font-semibold"
-                    : "text-text-secondary hover:bg-white/60 hover:text-text-primary"
-                }`}
-                onClick={() => {
-                  setOpen(false);
-                  setActiveSection(l.href);
-                }}
+        <div className="border-t border-border/80 bg-surface/95 backdrop-blur-md shadow-lg md:hidden">
+          <div className="mx-auto max-w-7xl space-y-1.5 px-4 py-4">
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => {
+                    setOpen(false);
+                    setActiveSection(link.href);
+                  }}
+                  className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
+                    active
+                      ? "bg-accent text-white font-semibold shadow-sm"
+                      : "text-text-secondary hover:bg-accent-light/50 hover:text-text-primary"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+
+            <div className="pt-2">
+              <a
+                href="/Ariful-Islam-CV.pdf"
+                download
+                onClick={() => setOpen(false)}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-hover"
               >
-                {l.label}
-              </Link>
-            ))}
-            <a
-              href={profile.resume}
-              className="rounded-lg px-4 py-2.5 text-sm font-semibold text-center text-white border border-accent-border bg-accent hover:bg-accent-hover transition-colors"
-              download
-            >
-              Download Resume / CV
-            </a>
+                <Download className="h-4 w-4" />
+                <span>Download Resume</span>
+              </a>
+            </div>
           </div>
         </div>
       )}

@@ -93,18 +93,19 @@ export default function ContactForm() {
   }
 
   return (
-    <Card className="border-border bg-surface/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-shadow duration-300">
-      <CardHeader className="space-y-1">
-        <CardTitle className="flex items-center gap-2 text-text-primary">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-light text-accent">
+    <Card className="rounded-2xl border-border/80 bg-surface/85 backdrop-blur-sm shadow-sm transition-all duration-300 hover:border-accent-border hover:shadow-md">
+      <CardHeader className="space-y-1.5 pb-4">
+        <CardTitle className="flex items-center gap-3 text-lg font-semibold text-text-primary">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent-border/60 bg-accent-light/70 text-accent">
             <MessageSquare className="h-4 w-4" />
           </span>
-          Send a Message
+          <span>Send a Message</span>
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-sm text-text-secondary">
           Fill out the form and I&apos;ll get back to you as soon as possible.
         </CardDescription>
       </CardHeader>
+
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -114,13 +115,13 @@ export default function ContactForm() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel className="text-text-primary">Name</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
                         <Input
                           placeholder="Your full name"
-                          className="pl-9"
+                          className="h-11 rounded-xl border-border/80 bg-background/60 pl-9"
                           autoComplete="name"
                           {...field}
                         />
@@ -136,14 +137,14 @@ export default function ContactForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-text-primary">Email</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
                         <Input
                           type="email"
                           placeholder="you@example.com"
-                          className="pl-9"
+                          className="h-11 rounded-xl border-border/80 bg-background/60 pl-9"
                           autoComplete="email"
                           {...field}
                         />
@@ -160,13 +161,13 @@ export default function ContactForm() {
               name="subject"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Subject</FormLabel>
+                  <FormLabel className="text-text-primary">Subject</FormLabel>
                   <FormControl>
                     <div className="relative">
                       <Type className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
                       <Input
                         placeholder="What's this about?"
-                        className="pl-9"
+                        className="h-11 rounded-xl border-border/80 bg-background/60 pl-9"
                         {...field}
                       />
                     </div>
@@ -181,11 +182,11 @@ export default function ContactForm() {
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Message</FormLabel>
+                  <FormLabel className="text-text-primary">Message</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Tell me about your project, idea, or question..."
-                      className="min-h-[140px]"
+                      placeholder="Tell me about your project, role, or question..."
+                      className="min-h-[140px] resize-none rounded-xl border-border/80 bg-background/60"
                       {...field}
                     />
                   </FormControl>
@@ -197,18 +198,18 @@ export default function ContactForm() {
             <Button
               type="submit"
               size="lg"
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto rounded-xl bg-accent px-6 text-white hover:bg-accent-hover"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  Sending...
+                  <span>Sending...</span>
                 </>
               ) : (
                 <>
                   <Send className="h-4 w-4" />
-                  Send Message
+                  <span>Send Message</span>
                 </>
               )}
             </Button>

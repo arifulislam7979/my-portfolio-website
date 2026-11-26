@@ -9,43 +9,39 @@ export const profile = {
   github: "https://github.com/arifulislam7979",
   linkedin: "https://linkedin.com/in/arifulislam",
   avatar: "/images/my-imagee.jpeg",
-  resume: "/Curriculum Vitae (5).pdf"
+  resume: "/Curriculum Vitae (5).pdf",
 };
-
 export const skills = {
   frontend: [
-    "TypeScript & JavaScript (ES6+)",
+    "Next.js (App Router)",
     "React.js",
-    "Next.js 14 (App Router)",
-    "HTML5",
-    "CSS3",
+    "TypeScript",
+    "JavaScript (ES6+)",
     "Tailwind CSS",
-    "Shadcn UI",
-    "DaisyUI",
+    "shadcn/ui",
     "HeroUI",
-    "Component Design",
-    "Responsive Web & Mobile UI Design",
+    "DaisyUI",
+    "Framer Motion",
+    "React Hook Form & Zod",
+    "HTML5 & CSS3",
   ],
   backend: [
     "Node.js",
-    "Express.js (TypeScript)",
-    "MongoDB Atlas & Mongoose ORM",
-    "RESTful API Architecture & Integration",
+    "Express.js",
+    "RESTful API Design",
+    "MongoDB & MongoDB Atlas",
+    "Mongoose ORM",
     "Better Auth",
     "JWT & Cookie Auth",
-    "Database CRUD & Data Pipelines",
   ],
   tools: [
-    "Git",
-    "GitHub & Version Control",
+    "Git & GitHub",
     "Vercel & Cloud Deployment",
-    "Postman API Testing & Debugging",
-    "NPM",
-    "Environment Variables",
+    "Postman",
+    "GitHub Copilot & Claude Code",
     "VS Code",
   ],
-  languages: ["Bangla (Native)", "English (Intermediate / Conversational)"],
-};
+} as const;
 
 export type Project = {
   id: number;
@@ -60,6 +56,44 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 1,
+    title: "FIXMATE WEBSITE",
+    description:
+      "A full-stack service marketplace and booking platform featuring role-based access, extended user profiles, MongoDB persistence, and URL-synchronized search, category, and sorting filters.",
+    image: "/images/fixmate.png",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Stripe",
+      "MongoDB",
+      "Better Auth",
+    ],
+    liveUrl: "https://fix-mate-client-alpha.vercel.app/",
+    githubUrl: "https://github.com/arifulislam7979/Fix-Mate-client",
+  },
+  {
+    id: 2,
+    title: "STUDIO SPACE WEBSITE",
+    description:
+      "A peer-to-peer creative workspace and studio booking web application featuring interactive listing sliders, MongoDB data integration, and JWT authentication.",
+    image: "/images/studio-space.png",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Tailwind CSS",
+    ],
+    liveUrl: "https://studio-space-project.vercel.app/",
+    githubUrl: "https://github.com/arifulislam7979/Studio-Space",
+  },
+
+  {
+    id: 3,
     title: "BAZAR DOR WEBSITE",
     description:
       "A production-grade full-stack e-commerce platform with authentication, product catalog, cart, and order management built on the Next.js ecosystem.",
@@ -77,23 +111,17 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/arifulislam7979/Bazar-dor-website",
   },
   {
-    id: 2,
+    id: 4,
     title: "BOOKS VIBE WEBSITE",
     description:
       "A responsive admin dashboard and UI system featuring data tables, analytics cards, navigation drawers, and accessible components.",
     image: "/images/book-management.png",
-    technologies: [
-      "TypeScript",
-      "React",
-      "Tailwind CSS",
-      "DaisyUI",
-      "HeroUI",
-    ],
+    technologies: ["TypeScript", "React", "Tailwind CSS", "DaisyUI", "HeroUI"],
     liveUrl: "https://book-magement-project--one.vercel.app/",
     githubUrl: "https://github.com/arifulislam7979/first-next-project",
   },
   {
-    id: 3,
+    id: 5,
     title: "FIT LOG - TRACKING SITE",
     description:
       "A workout tracker application that lets users log exercises, calculate calorie burn, and persist history via Local Storage.",
@@ -103,7 +131,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/arifulislam7979/Fit-log-project",
   },
   {
-    id: 4,
+    id: 6,
     title: "BANGLA NEWS 24",
     description:
       "A Bangla news portal with dynamic article listing, category browsing, server-side data fetching, and authenticated protected routes.",
@@ -115,15 +143,17 @@ export const projects: Project[] = [
 ];
 
 export const education = {
-  degree: "B.S.S. Honours in Political Science",
-  status: "2nd Year — Running",
+  degree: "B.S.S. (Honours) in Political Science",
+  status: "2nd Year (In Progress)",
   institution: "Majida Adarsha Degree College, Kurigram",
-  affiliation: "Affiliated with National University, Bangladesh",
-  hsc: "H.S.C (2024) — Ulipur M.S. School & College",
-  hscBoard: "Dinajpur Board — GPA 3.75",
+  affiliation: "Affiliated with the National University, Bangladesh",
+  hsc: "H.S.C (Humanities) — 2024",
+  hscInstitution: "Ulipur M.S. School & College",
+  hscBoard: "Board of Intermediate and Secondary Education, Dinajpur",
+  hscGpa: "3.75 out of 5.00",
   description:
-    "Alongside full-stack web development, I am currently pursuing a B.S.S. Honours in Political Science (2nd Year) at Majida Adarsha Degree College, Kurigram, affiliated with the National University, Bangladesh. I completed my H.S.C in 2024 from Ulipur M.S. School & College (Dinajpur Board) with a GPA of 3.75. Balancing a social science perspective with software engineering fundamentals strengthens my analytical problem-solving, research, and structured thinking — directly shaping how I design and build products.",
-};
+    "Alongside full-stack web development, I am pursuing a B.S.S. (Honours) in Political Science (2nd Year) at Majida Adarsha Degree College, Kurigram, affiliated with the National University, Bangladesh, after completing my H.S.C in 2024 from Ulipur M.S. School & College under the Dinajpur Board with a GPA of 3.75. Combining social science studies with software engineering strengthens my analytical reasoning, research habits, and structured problem-solving — directly informing how I architect and build web applications.",
+} as const;
 
 export const navLinks = [
   { label: "Home", href: "#home" },
