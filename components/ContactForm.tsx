@@ -58,12 +58,32 @@ export default function ContactForm() {
   });
 
   async function onSubmit(values: ContactFormValues) {
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      toast.error("Configuration missing", {
+        description:
+          "Web3Forms access key is not configured in environment variables.",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: values.name,
+          email: values.email,
+          subject: `Portfolio Inquiry: ${values.subject}`,
+          from_name: values.name,
+          message: values.message,
+        }),
       });
 
       const data = (await response.json()) as {
@@ -77,7 +97,7 @@ export default function ContactForm() {
 
       toast.success("Message sent!", {
         description:
-          data.message || "Thanks for reaching out. I'll reply soon.",
+          "Thanks for reaching out. Your message has been delivered to my inbox.",
       });
       form.reset();
     } catch (error) {
